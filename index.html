@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Elsewhere — Flagship Location Case Study</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+  :root{
+    --navy:#1A2744;
+    --navy-light:#28395e;
+    --gold:#C9A84C;
+    --gold-soft:#e4d4a3;
+    --cream:#FAF7F0;
+    --ink:#232323;
+    --line:rgba(26,39,68,0.14);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-light) 100%);
+    color:var(--cream);
+    padding:90px 28px 70px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(201,168,76,0.10), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(201,168,76,0.08), transparent 40%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-size:12.5px; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--gold); font-weight:500; margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:52px; font-weight:500; margin:0 0 14px; line-height:1.08;
+    font-style:italic;
+  }
+  .hero p.sub{
+    max-width:560px; margin:0 auto; color:rgba(250,247,240,0.78);
+    font-size:16.5px; font-weight:300;
+  }
+  .hero .count{
+    display:inline-flex; gap:36px; margin-top:38px;
+    padding-top:28px; border-top:1px solid rgba(201,168,76,0.3);
+  }
+  .count div{text-align:center;}
+  .count .num{font-family:'Cormorant Garamond',serif; font-size:34px; color:var(--gold); font-weight:600;}
+  .count .label{font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(250,247,240,0.6);}
+
+  /* SECTION LABELS */
+  .section{padding:64px 0;}
+  .section-head{text-align:center; margin-bottom:44px;}
+  .section-head .eyebrow{color:var(--navy); opacity:0.55;}
+  .section-head h2{font-size:34px; font-style:italic; font-weight:500; margin:0; color:var(--navy);}
+
+  /* RANKING TABLE */
+  .rank-table{width:100%; border-collapse:collapse; font-size:14.5px;}
+  .rank-table th{
+    text-align:left; font-family:'Jost'; font-weight:500; font-size:11px;
+    letter-spacing:0.1em; text-transform:uppercase; color:var(--navy);
+    opacity:0.55; padding:10px 14px; border-bottom:2px solid var(--navy);
+  }
+  .rank-table td{padding:14px; border-bottom:1px solid var(--line); vertical-align:top;}
+  .rank-table tr:hover td{background:rgba(201,168,76,0.06);}
+  .rank-num{
+    font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:600;
+    color:var(--gold); width:34px;
+  }
+  .rank-city{font-weight:500; color:var(--navy);}
+  .rank-city .region{display:block; font-size:12px; font-weight:300; color:var(--ink); opacity:0.6;}
+  .tier-tag{
+    display:inline-block; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:3px 9px; border-radius:20px; font-weight:500;
+  }
+  .tier-1{background:rgba(26,39,68,0.9); color:var(--gold-soft);}
+  .tier-2{background:rgba(26,39,68,0.55); color:var(--cream);}
+  .tier-3{background:rgba(201,168,76,0.25); color:var(--navy);}
+  .tier-4{background:rgba(0,0,0,0.06); color:#8a7a55;}
+
+  /* CASE STUDY CARDS */
+  .case{
+    border:1px solid var(--line);
+    border-radius:2px;
+    margin-bottom:26px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .case-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    padding:26px 30px 18px;
+    border-bottom:1px solid var(--line);
+  }
+  .case-head .id{
+    font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--gold);
+    letter-spacing:0.05em; font-weight:600;
+  }
+  .case-head h3{
+    font-size:30px; font-weight:500; color:var(--navy); margin:2px 0 0;
+  }
+  .case-head h3 .region{
+    font-family:'Jost'; font-size:13px; font-weight:300; color:var(--ink);
+    opacity:0.55; display:block; margin-top:2px; letter-spacing:0.02em;
+  }
+  .case-body{padding:22px 30px 28px;}
+  .thesis{font-size:15.5px; margin:0 0 20px; color:#333;}
+  .thesis b{color:var(--navy);}
+  .pc-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .pc-col h4{
+    font-family:'Jost'; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    font-weight:600; margin:0 0 10px;
+  }
+  .pc-col.pro h4{color:#3e6b4f;}
+  .pc-col.con h4{color:#a04b3f;}
+  .pc-col ul{margin:0; padding-left:18px; font-size:13.8px;}
+  .pc-col li{margin-bottom:7px;}
+  .verdict{
+    margin-top:18px; padding:12px 16px; background:var(--cream);
+    border-left:3px solid var(--gold); font-size:13.5px; font-style:italic;
+    color:var(--navy);
+  }
+  @media (max-width:640px){
+    .pc-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+    .case-head{flex-direction:column; align-items:flex-start; gap:4px;}
+  }
+
+  .divider-note{
+    text-align:center; font-size:12.5px; color:var(--navy); opacity:0.5;
+    letter-spacing:0.06em; margin:8px 0 30px; text-transform:uppercase;
+  }
+
+  footer{
+    padding:50px 28px 70px; text-align:center; color:var(--navy); opacity:0.55; font-size:12.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Elsewhere Brewing &amp; Experience Co.</div>
+    <h1>The Fifteen Portals</h1>
+    <p class="sub">A worldwide flagship-location case study — where the concept could stand, where it would struggle, and an honest ranking across every city stress-tested so far.</p>
+    <div class="count">
+      <div><div class="num">15</div><div class="label">Cities Evaluated</div></div>
+      <div><div class="num">4</div><div class="label">Continents</div></div>
+      <div><div class="num">3</div><div class="label">Cut From Contention</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="section">
+    <div class="section-head">
+      <div class="eyebrow">The Standings</div>
+      <h2>Ranked, Not Rated</h2>
+    </div>
+    <table class="rank-table">
+      <tr><th>#</th><th>City</th><th>Tier</th><th>One-line read</th></tr>
+
+      <tr><td class="rank-num">1</td><td class="rank-city">Melbourne<span class="region">Australia</span></td><td><span class="tier-tag tier-1">Tier 1</span></td><td>Cosmopolitanism baked in over a century, not imported this decade — plus the best-traveled native population on the list.</td></tr>
+
+      <tr><td class="rank-num">2</td><td class="rank-city">Wellington<span class="region">New Zealand</span></td><td><span class="tier-tag tier-1">Tier 1</span></td><td>A genuinely elite native craft beer culture already exists here — you'd be adding to real expertise, not importing a trend.</td></tr>
+
+      <tr><td class="rank-num">3</td><td class="rank-city">Nashville<span class="region">United States</span></td><td><span class="tier-tag tier-1">Tier 1</span></td><td>Still the easiest pitch to press and investors — but the underlying demand thesis remains the least tested on this list.</td></tr>
+
+      <tr><td class="rank-num">4</td><td class="rank-city">Vienna<span class="region">Austria</span></td><td><span class="tier-tag tier-2">Tier 2</span></td><td>Three centuries of imperial cosmopolitanism, genuinely earned — undercut by a craft beer scene that's still thin.</td></tr>
+
+      <tr><td class="rank-num">5</td><td class="rank-city">Copenhagen<span class="region">Denmark</span></td><td><span class="tier-tag tier-2">Tier 2</span></td><td>The strongest personal and narrative fit given your own brewing history — also the most expensive and regulatorily heavy option here.</td></tr>
+
+      <tr><td class="rank-num">6</td><td class="rank-city">Austin<span class="region">United States</span></td><td><span class="tier-tag tier-2">Tier 2</span></td><td>Deep experience-economy culture, but real estate and an already-saturated beer market work against you.</td></tr>
+
+      <tr><td class="rank-num">7</td><td class="rank-city">Philadelphia<span class="region">United States</span></td><td><span class="tier-tag tier-2">Tier 2</span></td><td>The most serious food press and dining culture on the US list — but no obvious "why here, why now" story.</td></tr>
+
+      <tr><td class="rank-num">8</td><td class="rank-city">Charlotte<span class="region">United States</span></td><td><span class="tier-tag tier-3">Tier 3</span></td><td>Best real estate economics of any US city tested — paired with the least evidence anyone there wants this.</td></tr>
+
+      <tr><td class="rank-num">9</td><td class="rank-city">Asheville<span class="region">United States</span></td><td><span class="tier-tag tier-3">Tier 3</span></td><td>Genuinely the most beer-literate population per capita in America — in a market too small and too loyal to its incumbents.</td></tr>
+
+      <tr><td class="rank-num">10</td><td class="rank-city">Reykjavík<span class="region">Iceland</span></td><td><span class="tier-tag tier-3">Tier 3</span></td><td>The most direct narrative tie to your own gypsy-brewing roots — in a market of roughly 230,000 people.</td></tr>
+
+      <tr><td class="rank-num">11</td><td class="rank-city">Lisbon<span class="region">Portugal</span></td><td><span class="tier-tag tier-4">Tier 4</span></td><td>Cheap and welcoming to new concepts, but a wine-first culture and macro-lager duopoly with a low spending ceiling.</td></tr>
+
+      <tr><td class="rank-num">12</td><td class="rank-city">Tokyo<span class="region">Japan</span></td><td><span class="tier-tag tier-4">Tier 4</span></td><td>Unmatched palate sophistication — attached to a craft beer category that's still just 1–2% of the market after 30 years of trying.</td></tr>
+
+      <tr><td class="rank-num">13</td><td class="rank-city">Toronto<span class="region">Canada</span></td><td><span class="tier-tag tier-4">Tier 4</span></td><td>Disqualifies itself on its own terms — its multiculturalism is a live, ongoing immigration story, exactly what this round of screening was built to exclude.</td></tr>
+
+      <tr><td class="rank-num">14</td><td class="rank-city">Zurich<span class="region">Switzerland</span></td><td><span class="tier-tag tier-4">Tier 4</span></td><td>Wealthy and well-traveled, but its own craft beer scene is described by locals as genuinely tiny — you'd be building the category from zero.</td></tr>
+
+      <tr><td class="rank-num">15</td><td class="rank-city">Denver<span class="region">United States</span></td><td><span class="tier-tag tier-4">Tier 4</span></td><td>Already the weakest scorer in the original analysis — now compounded by a US craft beer market in its second straight year of contraction.</td></tr>
+    </table>
+  </div>
+
+  <div class="divider-note">— Full Case Studies —</div>
+
+  <!-- TIER 1 -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <div class="eyebrow">Tier 1</div>
+      <h2>The Strongest Fits</h2>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">01</div><h3>Melbourne<span class="region">Victoria, Australia</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> Melbourne's cosmopolitan palate isn't a current trend — it's the settled residue of migration waves from the 1850s gold rush and the postwar 1940s–60s, meaning today's native-born Melburnians grew up with a globally literate food culture as a birthright, not an import. Layer onto that the fact that Australians are exceptionally well-traveled: roughly one in three residents left the country for international travel in a single recent year, an organically curious population rather than one manufactured by a current transplant boom.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Mature, locally-rooted craft beer culture with real collaborative depth between brewers</li>
+            <li>Multicultural dining scene spanning 70+ national cuisines is generations deep, not a recent overlay</li>
+            <li>Exceptionally high outbound international travel rate among natives — global fluency isn't imported, it's lived</li>
+            <li>Laneway/experience-bar culture already primes locals for immersive, design-forward hospitality concepts</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Farthest from your US ingredient supply chains of any city on this list</li>
+            <li>Weaker "why now" urgency narrative than a boomtown story — harder press hook for investors</li>
+            <li>Import/customs logistics for non-Australian ingredients add real per-shipment friction</li>
+            <li>Highly competitive existing hospitality scene means differentiation has to be earned, not assumed</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Best product-market fit on pure "does the native population already want this" logic — worst fit on ease of launch and narrative simplicity.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">02</div><h3>Wellington<span class="region">New Zealand</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> New Zealand has more breweries per capita than Britain, the US, or Australia, and Wellington is the acknowledged capital of that scene — roughly 20 breweries in a compact, walkable city, with brewers like Garage Project and Fork &amp; Brewer known for genuine ingredient experimentation (foraged wildflowers, spontaneous ferments) rather than trend-chasing. This is a population that already knows what excellent, adventurous beer tastes like.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>The most technically sophisticated native beer culture on this entire list — you'd be adding to real expertise</li>
+            <li>Kiwis share Australia's high-outbound-travel, globally-curious profile</li>
+            <li>Small, dense, walkable city center mirrors your ideal "portal district" footprint</li>
+            <li>Existing brewers already experiment with hyper-local, foraged ingredients — a natural creative match</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Tiny total market — Wellington's metro population is a fraction of any US city on this list</li>
+            <li>Extremely far from US and European ingredient sourcing networks; shipping costs and lead times compound</li>
+            <li>A beer-literate population can also be the hardest to impress — you're competing with genuine local experts, not novelty-seekers</li>
+            <li>Weak tourism volume relative to Nashville or Copenhagen limits the Experience Ticket revenue stream</li>
+          </ul></div>
+        </div>
+        <div class="verdict">The strongest "the locals already care about craft" case on the list — the smallest addressable market by a wide margin.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">03</div><h3>Nashville<span class="region">Tennessee, United States</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis (original):</b> Nashville adds roughly 80 residents a day, overwhelmingly coastal transplants who kept their well-traveled palate. Zero direct competitor exists for a globally-literate experience concept in a city whose hospitality identity is honky-tonks and hot chicken — a contrast sharp enough to write its own press coverage.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Easiest investor and press narrative of any city on this list</li>
+            <li>Strong tourism infrastructure (~15M annual visitors) with pre-allocated experience budgets</li>
+            <li>Zero direct competitor in the globally-literate, design-forward hospitality category</li>
+            <li>Simplest US regulatory and real estate path of the group</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>The core demand thesis — that transplants will pay premium prices for nostalgia — remains untested, not proven</li>
+            <li>Target real estate corridors (East Nashville, The Gulch) have seen sustained rent inflation</li>
+            <li>Genuine tension between an "anti-cliché, sourced-ingredient" brand and a city whose current tourist identity is heavily commodified</li>
+            <li>Growth story is inbound migration — the exact pattern this expanded search was designed to test against</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Still the strongest single pitch. Still the least evidence-backed thesis of the top three.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="eyebrow">Tier 2</div>
+      <h2>Strong, With Real Constraints</h2>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">04</div><h3>Vienna<span class="region">Austria</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> Vienna's cosmopolitanism is imperial residue, not recent arrival. Its UNESCO-listed coffeehouse tradition literally began with beans left behind by a retreating Ottoman army in 1683, and became the "public living room" where Zweig, Klimt, and Freud all sat side by side — a cosmopolitan air that came to Vienna via 300 years of empire, not migration.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Genuinely centuries-deep native cosmopolitanism — the strongest historical case on the list</li>
+            <li>18 Michelin-starred restaurants and a 2026 tourism campaign explicitly built around tradition-meets-innovation dining</li>
+            <li>High-trust, high-spend dining culture already exists</li>
+            <li>EU market access with Austria's comparatively moderate regulatory burden</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Craft beer infrastructure is thin — essentially one strong brewpub (Fischerbräu) plus a craft line from the legacy Ottakringer brewery</li>
+            <li>Coffee, not beer, is the city's actual cultural signature — you'd be borrowing prestige from an adjacent category</li>
+            <li>Non-EU founder still faces Austrian immigration and business-registration hurdles</li>
+            <li>Less obvious "why a brewery" logic than a city with an existing beer identity</li>
+          </ul></div>
+        </div>
+        <div class="verdict">The best cultural-fit argument in Europe — the weakest beer-specific infrastructure to plug into.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">05</div><h3>Copenhagen<span class="region">Denmark</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> This is the literal birthplace of the gypsy-brewing movement — Mikkeller, founded by a former schoolteacher, started as a gypsy brewer here before going global. Copenhagen's drinking public was among the first in Europe to embrace the American craft beer revolution, and remains unusually sophisticated and demanding.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Direct personal and narrative tie to your own brewing background</li>
+            <li>100% foreign ownership permitted; company registration itself is fast and simple</li>
+            <li>Sophisticated, globally-literate drinking public already exists</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Highest VAT in the EU at a flat 25%, with no reduced rate for alcohol</li>
+            <li>As a non-EU founder, you would need a Danish Establishment Card (immigration approval), not just a business filing</li>
+            <li>Every non-EU sourced ingredient (Hatch chiles, Bloody Butcher corn) requires customs declarations and TARIC tariff lookups — a real operational tax on your sourcing model</li>
+            <li>Highest overall cost base of any European city tested</li>
+          </ul></div>
+        </div>
+        <div class="verdict">The best story. The most expensive and administratively heavy build.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">06</div><h3>Austin<span class="region">Texas, United States</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> Deep experience-economy culture and a live-music identity that parallels your "portal" concept's sensory immersion — but the original scorecard already flagged Austin's weakest link.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Strongest experience-economy momentum score (9/10) of the original US comparison set</li>
+            <li>Deep tech/creative-class density and demonstrated willingness to pay for premium experiences</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Weakest real estate feasibility score (5/10) of the original comparison set</li>
+            <li>Craft beer market already dense with existing brands fighting for the same shelf and tap space</li>
+            <li>Less serious food-press infrastructure than Philadelphia or Nashville</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Right cultural instincts, wrong real estate math.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">07</div><h3>Philadelphia<span class="region">Pennsylvania, United States</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> The most credible food-writer and James-Beard-caliber dining culture in the original comparison set, which matters enormously for a concept whose entire premise depends on the food pairing program being taken seriously.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Best food-culture credibility score (9/10) in the original US set</li>
+            <li>Serious dining press infrastructure already in place</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Middling real estate and tourism scores</li>
+            <li>No obvious contrast-narrative hook the way Nashville has one</li>
+            <li>East Coast rent base likely runs higher than Nashville's target corridors</li>
+          </ul></div>
+        </div>
+        <div class="verdict">The safest bet on execution quality — the least exciting bet on story.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 3 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="eyebrow">Tier 3</div>
+      <h2>Viable, With Flagged Concerns</h2>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">08</div><h3>Charlotte<span class="region">North Carolina, United States</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> Best real estate feasibility (8/10) and strongest differentiation score of the original US comparison set — little existing competition for the concept.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Cheapest, most available real estate of the original US set</li>
+            <li>Genuine white space — little to no existing competition</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Weakest demo-density and experience-economy scores in the original comparison</li>
+            <li>Banking-town culture skews conservative for an experimental, globally-literate concept</li>
+            <li>No independent evidence of local appetite — differentiation may simply reflect absence of demand, not opportunity</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Cheap to open. No proof anyone's waiting for it.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">09</div><h3>Asheville<span class="region">North Carolina, United States</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> The highest brewery-per-capita density of any US city — genuinely "Beer City USA" — with a population whose default assumption is that a serious brewery deserves serious attention.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Deepest brewery-literate culture in America by a wide margin</li>
+            <li>Strong existing beer-tourism habits and infrastructure</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Population is only around 97,000 — a hard ceiling on your demo-density criterion</li>
+            <li>Market is saturated with beloved incumbents whose owners are explicitly proud of the competition — brand loyalty runs deep and local</li>
+            <li>City's identity is Appalachian-and-proud, not internationalist — a genuine stretch for a globally-themed "portal" concept</li>
+          </ul></div>
+        </div>
+        <div class="verdict">The most beer-sophisticated population in America is also the most brand-loyal to names that aren't yours.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">10</div><h3>Reykjavík<span class="region">Iceland</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> Gypsy brewing isn't a historical footnote here — it's current practice. Several Icelandic breweries actively rent out their equipment to gypsy brewers today, and the country's roughly 25–30 breweries service a population of only 330,000, making it one of the most brewery-dense nations on earth.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>The most direct, literal connection to your own brewing background of any city on this list</li>
+            <li>Extraordinary tourist-to-resident ratio (roughly 1.7M annual visitors against a national population of 330,000) creates a built-in Experience Ticket audience</li>
+            <li>Genuine culture of collaboration and equipment-sharing among small brewers</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Reykjavík's own population is roughly 230,000 — a tiny local base beneath the tourist layer</li>
+            <li>Among the highest alcohol taxes and import costs of any market considered</li>
+            <li>Remote logistics make non-Icelandic ingredient sourcing expensive and slow</li>
+          </ul></div>
+        </div>
+        <div class="verdict">The best personal narrative on the entire list. Also the smallest domestic market by population.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 4 -->
+  <div class="section">
+    <div class="section-head">
+      <div class="eyebrow">Tier 4</div>
+      <h2>Weak Fits — Proceed With Real Caution</h2>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">11</div><h3>Lisbon<span class="region">Portugal</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> Cheapest cost base of any city tested, with craft beer still novel enough that near-zero direct competition exists, and a large, growing expat population as an instant beachhead audience.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Lowest cost of entry on the entire list</li>
+            <li>Large and growing foreign-resident population (roughly 22% of Lisbon's population) as an initial customer base</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Wine, not beer, is the culturally dominant beverage; industry observers doubt craft beer will "catch fire" here the way it did in the US</li>
+            <li>Two macro lagers (Sagres and Super Bock) still dominate the market almost completely — restaurant menus often don't even bother listing beer brands</li>
+            <li>Lower disposable income ceiling than Nashville or Copenhagen limits premium Experience Ticket pricing</li>
+            <li>Revenue would depend almost entirely on tourists and expats, not the native population — the opposite of what this search set out to find</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Cheap and welcoming — but the native population's own spending habits argue against the model.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">12</div><h3>Tokyo<span class="region">Japan</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> A population with an unmatched appetite for imported foreign food and drink culture without leaving the country, paired with an exacting quality standard that would force genuine excellence in the beer program.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Deep national culture of quality-first, craftsmanship-obsessed consumption — a natural fit for your "excellent, not just interesting" standard</li>
+            <li>Massive tourism volume and growing international craft beer festival attendance</li>
+            <li>Domestic craft brewers are already producing internationally award-winning beer</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Craft beer remains only about 1–2% of Japan's total beer market even after roughly three decades of trying, with the "big four" brewers holding the rest</li>
+            <li>Complex alcohol licensing and high commercial real estate costs in central Tokyo</li>
+            <li>Real language and regulatory barriers for a founder without a Japanese business partner</li>
+          </ul></div>
+        </div>
+        <div class="verdict">The most sophisticated palate on the list is attached to the most stubbornly closed beer market on the list.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">13</div><h3>Toronto<span class="region">Canada</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> Frequently cited as the most multicultural city in the world, with over half its residents born outside Canada and 250+ ethnicities represented — an enormous built-in audience for a globally-themed concept.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Unmatched raw cultural and culinary diversity — genuinely global cuisine available block by block</li>
+            <li>Already has 70+ independent breweries and an active, engaged craft beer culture</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>This is precisely the pattern this round of screening was designed to exclude: Toronto's multiculturalism is a live, ongoing immigration story (over half the population born abroad), not a native population whose curiosity predates the current growth wave</li>
+            <li>Craft beer market is already dense and competitive</li>
+            <li>The "native population" argument doesn't actually hold here on inspection — it's the Nashville problem with better food</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Included specifically to test the filter — and it fails its own test. Flagged, not recommended.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">14</div><h3>Zurich<span class="region">Switzerland</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis:</b> A wealthy, quadrilingual, exceptionally well-traveled native population with high disposable income and genuine international sophistication.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Extremely high disposable income and willingness to pay for premium experiences</li>
+            <li>Multilingual, well-traveled native population with strong existing exposure to international food and drink culture</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>Local beer writers describe Zurich's own craft scene as genuinely small, with fewer than a handful of true microbreweries, and the "default" local beer culture still built around simple German-style lagers</li>
+            <li>You would be building the craft beer category from close to zero rather than joining a movement</li>
+            <li>Among the highest real estate and labor costs of any city on this list</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Right customer profile. Wrong category maturity — this would be evangelism, not participation.</div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-head">
+        <div><div class="id">15</div><h3>Denver<span class="region">Colorado, United States</span></h3></div>
+      </div>
+      <div class="case-body">
+        <p class="thesis"><b>The thesis (re-evaluated):</b> Denver already scored lowest of the original five US candidates (7.0/10), flagged specifically for weak differentiation — "another craft beer city" doesn't stand out the way Nashville's contrast does. Fresh data confirms the concern was directionally right and has since gotten worse.</p>
+        <div class="pc-grid">
+          <div class="pc-col pro"><h4>Pros</h4><ul>
+            <li>Legitimate craft brewing heritage and host city of the Great American Beer Festival</li>
+            <li>Larger existing pool of trained brewing labor to hire from than most cities on this list</li>
+          </ul></div>
+          <div class="pc-col con"><h4>Cons</h4><ul>
+            <li>The US craft beer industry recorded its worst year on record in 2025: production down 5.1%, breweries down 2.9% nationally, with closures outpacing openings for a second consecutive year</li>
+            <li>Colorado specifically has lost around 140 breweries, taprooms, and brewpubs in the last five years to market saturation</li>
+            <li>Denver's own market is described by local trade press as "fairly saturated," with unused production capacity chasing demand that isn't growing</li>
+            <li>Weakest differentiation score of the original comparison set, now compounded by a shrinking category</li>
+          </ul></div>
+        </div>
+        <div class="verdict">Re-evaluation confirms the original score was, if anything, too generous. Recommend dropping from further consideration.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Elsewhere Brewing &amp; Experience Co. — Flagship Location Study — Prepared for internal strategy use.
+</footer>
+
+</body>
+</html>
